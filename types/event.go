@@ -50,23 +50,24 @@ type ConferenceData struct {
 }
 
 type Event struct {
-	Kind           string     `json:"kind"`
-	Etag           string     `json:"etag"`
-	ID             string     `json:"id"`
-	Status         string     `json:"status"`
-	HtmlLink       string     `json:"htmlLink"`
-	Created        string     `json:"created"`
-	Updated        string     `json:"updated"`
-	Summary        string     `json:"summary"`
-	Creator        Email      `json:"creator"`
-	Organizer      Email      `json:"organizer"`
-	Start          Timezone   `json:"start"`
-	End            Timezone   `json:"end"`
-	ICalUID        string     `json:"iCalUID"`
-	Sequence       int        `json:"sequence"`
-	Attendees      []Attendee `json:"attendees"`
-	HangoutLink    string     `json:"hangoutLink"`
-	ConferenceData string     `json:"conferenceData"`
+	Kind           string         `json:"kind"`
+	Etag           string         `json:"etag"`
+	ID             string         `json:"id"`
+	Status         string         `json:"status"`
+	HtmlLink       string         `json:"htmlLink"`
+	Created        string         `json:"created"`
+	Updated        string         `json:"updated"`
+	Summary        string         `json:"summary"`
+	Description    string         `json:"description"`
+	Creator        Email          `json:"creator"`
+	Organizer      Email          `json:"organizer"`
+	Start          Timezone       `json:"start"`
+	End            Timezone       `json:"end"`
+	ICalUID        string         `json:"iCalUID"`
+	Sequence       int            `json:"sequence"`
+	Attendees      []Attendee     `json:"attendees"`
+	HangoutLink    string         `json:"hangoutLink"`
+	ConferenceData ConferenceData `json:"conferenceData"`
 }
 
 type Events struct {

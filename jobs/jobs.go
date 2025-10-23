@@ -2,20 +2,21 @@ package jobs
 
 import (
 	"fmt"
+	"time"
 
-	"github.com/lucas11776-golang/calendar_notify/utils/token"
+	"github.com/lucas11776-golang/calendar_notify/services/calender"
 )
 
 func Run() {
 	// Get calender events...
-
-	token, err := token.Get()
-
-	fmt.Println("RESULT", token, err)
-
 	go func() {
 		for {
-
+			if err := calender.FetchEventsFromGoogleCalender(); err != nil {
+				fmt.Println("ERROR FETCHING EVENTS FROM GOOGLE CALENDAR -", err)
+				time.Sleep(time.Second * 60)
+				continue
+			}
+			time.Sleep((time.Second * 60) * 30)
 		}
 	}()
 

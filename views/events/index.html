@@ -38,105 +38,22 @@
 
             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4 events-list-grid" id="events-grid">
                 <!-- Event Cards will be dynamically loaded here or hardcoded for now -->
+
+                {% for event in events.Items %}
                 <div class="col">
                     <div class="card event-card h-100">
                         <div class="card-body">
-                            <h3 class="card-title">Project Alpha Review</h3>
+                            <h3 class="card-title">{{ event.Title }}</h3>
                             <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-10-25 <i
                                     class="far fa-clock ms-2 me-2"></i> 10:00 AM</p>
                             <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> Conference
                                 Room A</p>
-                            <p class="card-text event-description">A quarterly review of Project Alpha's progress,
-                                focusing on Q3 achievements and Q4 planning. All team leads must attend.</p>
+                            <p class="card-text event-description">{{ event.Description }}</p>
                             <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
                         </div>
                     </div>
                 </div>
-                <div class="col">
-                    <div class="card event-card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Team Sync</h3>
-                            <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-10-28 <i
-                                    class="far fa-clock ms-2 me-2"></i> 02:00 PM</p>
-                            <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> Virtual
-                                (Google Meet)</p>
-                            <p class="card-text event-description">Weekly team synchronization meeting to discuss
-                                ongoing tasks, blockers, and upcoming priorities. Prepare your updates.</p>
-                            <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card event-card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">System Upgrade</h3>
-                            <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-11-01 <i
-                                    class="far fa-clock ms-2 me-2"></i> 09:00 AM</p>
-                            <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> Server Room
-                            </p>
-                            <p class="card-text event-description">Scheduled system wide upgrade. Expect minor service
-                                interruptions. IT team will lead the process.</p>
-                            <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card event-card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Client Demo Prep</h3>
-                            <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-11-07 <i
-                                    class="far fa-clock ms-2 me-2"></i> 11:00 AM</p>
-                            <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> Project
-                                Meeting Room</p>
-                            <p class="card-text event-description">Preparation meeting for the upcoming client
-                                demonstration. Review features, create a walkthrough, and assign presentation roles.</p>
-                            <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card event-card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Cyber Security Workshop</h3>
-                            <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-11-15 <i
-                                    class="far fa-clock ms-2 me-2"></i> 09:30 AM</p>
-                            <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> Auditorium
-                            </p>
-                            <p class="card-text event-description">An essential workshop on enhancing our cyber security
-                                practices and staying updated with the latest threats. Mandatory attendance for all tech
-                                staff.</p>
-                            <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card event-card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Annual Tech Summit</h3>
-                            <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-12-05 <i
-                                    class="far fa-clock ms-2 me-2"></i> 09:00 AM</p>
-                            <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> City
-                                Convention Center</p>
-                            <p class="card-text event-description">Our annual gathering to showcase innovations, discuss
-                                future trends, and network with industry leaders. Keynote speakers and breakout sessions
-                                included.</p>
-                            <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col">
-                    <div class="card event-card h-100">
-                        <div class="card-body">
-                            <h3 class="card-title">Holiday Party Planning</h3>
-                            <p class="card-text event-date-time"><i class="far fa-calendar-alt me-2"></i> 2025-12-20 <i
-                                    class="far fa-clock ms-2 me-2"></i> 03:00 PM</p>
-                            <p class="card-text event-location"><i class="fas fa-map-marker-alt me-2"></i> HR Office</p>
-                            <p class="card-text event-description">Meeting to finalize plans for the annual company
-                                holiday party. Discuss themes, catering, and entertainment. All volunteers welcome.</p>
-                            <a href="event.html" class="btn btn-primary view-details-button mt-auto">Enter Meeting</a>
-                        </div>
-                    </div>
-                </div>
+                {% end %}
             </div>
 
             <!-- Pagination controls -->

@@ -11,8 +11,8 @@ type EventMigration struct{}
 func (ctx *EventMigration) Up() {
 	migrations.Create(orm.DefaultDatabaseName, "events", func(table *migrations.Table) {
 		table.String("id").PrimaryKey().Unique()
-		table.BigInteger("start_date")
-		table.BigInteger("end_date")
+		table.BigInteger("start_timestamp")
+		table.BigInteger("end_timestamp")
 		table.String("link")
 		table.String("title")
 		table.Text("description").Nullable()

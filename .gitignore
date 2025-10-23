@@ -2,3 +2,4 @@
 credentials.json
 .vscode
 database/database.sqlite
+token.json
