@@ -24,7 +24,15 @@ type EventsFilter struct {
 
 // comment
 func GetEvents(filter EventsFilter) (*orm.Pagination[*models.Event], error) {
+	// TODO: must use timezone
+	current, err := time.Parse("2006-01-02T15:04:05-07:00", "2025-10-21T12:59:00+02:00")
+
+	fmt.Println("ERROR", err, current.UnixMilli())
+
 	events, err := orm.Model(models.Event{}).
+		// Where("end_timestamp", ">", time.Now().UnixMilli()).
+		Where("end_timestamp", ">", current.UnixMilli()).
+		OrderBy("start_timestamp", "ASC").
 		Paginate(12, filter.Page)
 
 	if err != nil {
@@ -53,11 +61,12 @@ func CreateOrUpdateEvent(event types.Event) error { // TODO: maybe add FirstAndU
 	}
 
 	if entity == nil {
+		// TODO: must use timezone
 		entity, err = orm.Model(models.Event{}).
 			Insert(orm.Values{
 				"id":              event.ID,
 				"start_timestamp": start.UnixMilli(),
-				"end_timestamp":   end.Unix(),
+				"end_timestamp":   end.UnixMilli(),
 				"link":            event.HangoutLink,
 				"title":           event.Summary,
 				"Description":     regexp.MustCompile(`<[^>]*>`).ReplaceAllString(event.Description, ""),
@@ -69,11 +78,12 @@ func CreateOrUpdateEvent(event types.Event) error { // TODO: maybe add FirstAndU
 	}
 
 	if entity.StartTimestamp != start.UnixMilli() || entity.EndTimestamp != end.UnixMilli() {
+		// TODO: must use timezone
 		err := orm.Model(models.Event{}).
 			Where("id", "=", event.ID).
 			Update(orm.Values{
 				"start_timestamp": start.UnixMilli(),
-				"end_timestamp":   end.Unix(),
+				"end_timestamp":   end.UnixMilli(),
 				"link":            event.HangoutLink,
 				"title":           event.Summary,
 				"Description":     regexp.MustCompile(`<[^>]*>`).ReplaceAllString(event.Description, ""),
