@@ -20,12 +20,14 @@ const GOOGLE_CALENDAR_EVENTS_URL = "https://www.googleapis.com/calendar/v3/calen
 type EventsFilter struct {
 	Search string
 	Page   int64
+	Limit  int64
 }
 
 // comment
 func GetEvents(filter EventsFilter) (*orm.Pagination[*models.Event], error) {
 	// TODO: must use timezone
-	current, err := time.Parse("2006-01-02T15:04:05-07:00", "2025-10-21T12:59:00+02:00")
+	// current, err := time.Parse("2006-01-02T15:04:05-07:00", "2025-10-21T11:30:00+02:00")
+	current, err := time.Parse("2006-01-02T15:04:05-07:00", "2025-01-21T11:30:00+02:00")
 
 	fmt.Println("ERROR", err, current.UnixMilli())
 
@@ -33,7 +35,28 @@ func GetEvents(filter EventsFilter) (*orm.Pagination[*models.Event], error) {
 		// Where("end_timestamp", ">", time.Now().UnixMilli()).
 		Where("end_timestamp", ">", current.UnixMilli()).
 		OrderBy("start_timestamp", "ASC").
+		Limit(filter.Limit).
 		Paginate(12, filter.Page)
+
+	if err != nil {
+		return nil, err
+	}
+
+	return events, nil
+}
+
+// comment
+func AllEvents() ([]*models.Event, error) {
+	// TODO: must use timezone
+	current, err := time.Parse("2006-01-02T15:04:05-07:00", "2025-10-21T11:30:00+02:00")
+
+	fmt.Println("ERROR", err, current.UnixMilli())
+
+	events, err := orm.Model(models.Event{}).
+		// Where("end_timestamp", ">", time.Now().UnixMilli()).
+		Where("end_timestamp", ">", current.UnixMilli()).
+		OrderBy("start_timestamp", "ASC").
+		Get()
 
 	if err != nil {
 		return nil, err
@@ -70,6 +93,7 @@ func CreateOrUpdateEvent(event types.Event) error { // TODO: maybe add FirstAndU
 				"link":            event.HangoutLink,
 				"title":           event.Summary,
 				"Description":     regexp.MustCompile(`<[^>]*>`).ReplaceAllString(event.Description, ""),
+				"attended":        false,
 			})
 
 		if err != nil {
@@ -87,6 +111,7 @@ func CreateOrUpdateEvent(event types.Event) error { // TODO: maybe add FirstAndU
 				"link":            event.HangoutLink,
 				"title":           event.Summary,
 				"Description":     regexp.MustCompile(`<[^>]*>`).ReplaceAllString(event.Description, ""),
+				"attended":        false,
 			})
 
 		if err != nil {

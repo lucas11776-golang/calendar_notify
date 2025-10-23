@@ -16,6 +16,7 @@ func (ctx *EventMigration) Up() {
 		table.String("link")
 		table.String("title")
 		table.Text("description").Nullable()
+		table.Boolean("attended").Default(false)
 	})
 }
 

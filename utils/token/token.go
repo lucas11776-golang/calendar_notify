@@ -74,7 +74,7 @@ func UpdateOrCreate(token *types.Token) (*models.Token, error) { // TODO: orm sh
 			Insert(orm.Values{
 				"name":         env.Env("GOOGLE_TOKEN_CALENDAR_NAME"),
 				"access_token": token.AccessToken,
-				"expires":      ((token.ExpiresIn - 60) * 1000) * int(time.Now().UnixMilli()),
+				"expires":      ((token.ExpiresIn - 60) * 1000) + int(time.Now().UnixMilli()),
 			})
 	}
 
@@ -82,7 +82,7 @@ func UpdateOrCreate(token *types.Token) (*models.Token, error) { // TODO: orm sh
 		Where("name", "=", env.Env("GOOGLE_TOKEN_CALENDAR_NAME")).
 		Update(orm.Values{
 			"access_token": token.AccessToken,
-			"expires":      ((token.ExpiresIn - 60) * 1000) * int(time.Now().UnixMilli()),
+			"expires":      ((token.ExpiresIn - 60) * 1000) + int(time.Now().UnixMilli()),
 		})
 
 	if err != nil {
@@ -90,7 +90,7 @@ func UpdateOrCreate(token *types.Token) (*models.Token, error) { // TODO: orm sh
 	}
 
 	entity.AccessToken = token.AccessToken
-	entity.Expires = ((token.ExpiresIn - 60) * 1000) * int(time.Now().UnixMilli())
+	entity.Expires = ((token.ExpiresIn - 60) * 1000) + int(time.Now().UnixMilli())
 
 	return entity, nil
 }
