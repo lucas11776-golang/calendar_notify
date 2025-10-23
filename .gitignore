@@ -1,0 +1,4 @@
+.env
+credentials.json
+.vscode
+database/database.sqlite

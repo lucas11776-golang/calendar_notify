@@ -1,0 +1,614 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Arima:wght@400;700&display=swap');
+
+:root {
+    --primary-bg: #1a1a2e;
+    --secondary-bg: #16213e;
+    --accent-color: #0f3460;
+    --text-color: #e0e0e0;
+    --highlight-color: #e94560;
+    --glow-color: rgba(233, 69, 96, 0.5);
+    --border-color: #0c75b0;
+}
+
+body {
+    font-family: 'Arima', cursive;
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    min-height: 100vh;
+    padding-top: 80px; /* Space for the fixed navbar */
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    position: relative;
+    box-sizing: border-box;
+}
+
+/* Custom Navbar Styles to override/complement Bootstrap */
+.custom-navbar {
+    background-color: var(--secondary-bg) !important;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+    padding: 15px 0; /* Adjusted for container-fluid */
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.custom-navbar .nav-link {
+    font-family: 'Arima', cursive;
+    color: var(--text-color);
+    text-decoration: none;
+    font-size: 1.1em;
+    padding: 8px 15px;
+    border-radius: 5px;
+    transition: color 0.3s ease, background-color 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.custom-navbar .nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background-color: var(--highlight-color);
+    transform: scaleX(0);
+    transform-origin: bottom right;
+    transition: transform 0.3s ease-out;
+}
+
+.custom-navbar .nav-link:hover::before {
+    transform: scaleX(1);
+    transform-origin: bottom left;
+}
+
+.custom-navbar .nav-link:hover {
+    color: var(--highlight-color);
+    text-shadow: 0 0 5px var(--glow-color);
+}
+
+/* Base Container Styling */
+.container {
+    background-color: var(--secondary-bg);
+    border-radius: 15px;
+    box-shadow: 0 0 30px var(--glow-color);
+    border: 1px solid var(--border-color);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+@media (max-width: 576px) {
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+
+/* event.html specific styles */
+.event-page-container {
+    max-width: 95%; /* Make the container 95% of the screen width */
+    width: 100%; /* Ensure it's responsive */
+    margin-left: auto;
+    margin-right: auto;
+}
+.event-page-container h1 {
+    font-family: 'Arima', cursive;
+    color: var(--highlight-color);
+    font-size: 2.5em; /* Adjusted to be slightly larger */
+    text-shadow: 0 0 10px var(--glow-color);
+}
+.iframe-wrapper {
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%; /* 16:9 Aspect Ratio */
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border-color);
+}
+.iframe-wrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 10px;
+}
+.event-page-container .back-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-family: 'Arima', cursive;
+}
+.event-page-container .back-button:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+/* events.html specific styles */
+.events-page-container h1 {
+    font-family: 'Arima', cursive;
+    color: var(--highlight-color);
+    font-size: 2.5em;
+    text-shadow: 0 0 10px var(--glow-color);
+}
+.search-bar input[type="text"] {
+    padding: 12px 20px;
+    border-radius: 8px;
+    border: 2px solid var(--accent-color);
+    background-color: var(--primary-bg);
+    color: var(--text-color);
+    font-size: 1em;
+    outline: none;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.search-bar input[type="text"]::placeholder {
+    color: rgba(224, 224, 224, 0.6);
+}
+.search-bar input[type="text"]:focus {
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 10px var(--glow-color);
+}
+.search-bar .search-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.search-bar .search-button:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+.event-card {
+    background-color: var(--primary-bg);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+.event-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px var(--glow-color);
+}
+.event-card .card-title {
+    font-family: 'Arima', cursive;
+    color: var(--highlight-color);
+    font-size: 1.3em;
+    margin-bottom: 10px;
+}
+.event-card .card-text {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin-bottom: 8px;
+}
+.event-card .event-date-time {
+    font-weight: bold;
+    color: var(--text-color);
+    opacity: 0.8;
+    font-family: 'Arima', cursive;
+    font-size: 0.9em;
+}
+.event-card .event-location {
+    color: var(--text-color);
+    opacity: 0.7;
+    font-size: 0.85em;
+}
+.event-card .event-description {
+    margin-top: 15px;
+    line-height: 1.5;
+    flex-grow: 1;
+}
+.event-card .view-details-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 10px 18px;
+    font-size: 0.9em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-family: 'Arima', cursive;
+}
+.event-card .view-details-button:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+.events-page-container .back-button {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-family: 'Arima', cursive;
+}
+.events-page-container .back-button:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+/* index.html specific styles */
+.main-calendar-container .title {
+    font-family: 'Arima', cursive;
+    font-size: 2.5em;
+    color: var(--highlight-color);
+    text-shadow: 0 0 10px var(--glow-color);
+}
+.main-calendar-container .date-display {
+    font-family: 'Arima', cursive;
+    font-size: 1.2em;
+    color: var(--text-color);
+}
+.calendar-nav-custom .nav-button-custom {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 20px;
+    font-size: 1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+.calendar-nav-custom .nav-button-custom:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+.calendar-nav-custom .nav-button-custom i {
+    pointer-events: none;
+}
+.calendar-grid-custom {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 10px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+    padding: 15px;
+    border: 1px solid var(--border-color);
+}
+.calendar-grid-custom .day-name {
+    font-family: 'Arima', cursive;
+    text-align: center;
+    padding: 10px 0;
+    color: var(--highlight-color);
+    font-size: 0.9em;
+    text-shadow: 0 0 5px rgba(233, 69, 96, 0.3);
+}
+.calendar-grid-custom .calendar-day {
+    background-color: var(--primary-bg);
+    border-radius: 8px;
+    padding: 15px 5px;
+    text-align: center; /* This should center the text */
+    aspect-ratio: 1 / 1; /* Make days square */
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Changed from space-between to center */
+    align-items: center; /* This aligns content horizontally within the flex container */
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+.calendar-grid-custom .calendar-day::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(15, 52, 96, 0.2) 0%, rgba(233, 69, 96, 0.1) 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+.calendar-grid-custom .calendar-day:hover::before {
+    opacity: 1;
+}
+.calendar-grid-custom .calendar-day:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(15, 52, 96, 0.8);
+    border-color: var(--highlight-color);
+    z-index: 1;
+}
+.calendar-grid-custom .calendar-day.current-month {
+    color: var(--text-color);
+}
+.calendar-grid-custom .calendar-day.other-month {
+    color: rgba(224, 224, 224, 0.4);
+    pointer-events: none;
+}
+.calendar-grid-custom .calendar-day.today {
+    border: 2px solid var(--highlight-color);
+    box-shadow: 0 0 20px var(--glow-color);
+    background-color: var(--accent-color);
+    font-weight: bold;
+    color: #ffffff;
+}
+.calendar-grid-custom .calendar-day .event-indicator {
+    width: 6px;
+    height: 6px;
+    background-color: var(--highlight-color);
+    border-radius: 50%;
+    margin-top: 5px;
+    animation: pulse 1.5s infinite alternate;
+}
+
+@keyframes pulse {
+    from { transform: scale(0.8); opacity: 0.7; }
+    to { transform: scale(1.2); opacity: 1; }
+}
+
+.event-sidebar-custom {
+    background-color: var(--accent-color);
+    border-radius: 10px;
+    border: 1px solid var(--border-color);
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+}
+.event-sidebar-custom h2 {
+    font-family: 'Arima', cursive;
+    color: var(--highlight-color);
+    font-size: 1.5em;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 0 8px rgba(233, 69, 96, 0.4);
+}
+.event-sidebar-custom .event-list-item {
+    background-color: var(--secondary-bg);
+    padding: 15px;
+    margin-bottom: 12px;
+    border-radius: 8px;
+    border-left: 5px solid var(--highlight-color);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    font-size: 0.95em;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    color: var(--text-color); /* Ensure text color is applied */
+}
+.event-sidebar-custom .event-list-item:hover {
+    transform: translateX(5px);
+    box-shadow: 0 0 10px rgba(233, 69, 96, 0.4);
+}
+.event-sidebar-custom .event-date {
+    font-family: 'Arima', cursive;
+    color: var(--text-color);
+    font-size: 0.85em;
+    opacity: 0.7;
+}
+
+/* Responsiveness adjustments for Bootstrap elements */
+@media (max-width: 992px) {
+    .main-calendar-container .title {
+        font-size: 2em;
+    }
+    .main-calendar-container .date-display {
+        font-size: 1em;
+    }
+    .calendar-grid-custom {
+        padding: 10px;
+        gap: 5px;
+    }
+    .calendar-grid-custom .day-name {
+        font-size: 0.8em;
+        padding: 5px 0;
+    }
+    .calendar-grid-custom .calendar-day {
+        font-size: 0.9em;
+        padding: 10px 2px;
+    }
+    .event-sidebar-custom h2 {
+        font-size: 1.3em;
+    }
+    .event-sidebar-custom .event-list-item {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .custom-navbar .nav-link {
+        font-size: 1em;
+        padding: 6px 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+        padding-left: 10px;
+        padding-right: 10px;
+    }
+    .main-calendar-container {
+        padding: 15px;
+        border-radius: 10px;
+    }
+    .main-calendar-container .title {
+        font-size: 1.8em;
+    }
+    .main-calendar-container .date-display {
+        font-size: 1em;
+    }
+    .calendar-nav-custom .nav-button-custom {
+        padding: 8px 15px;
+        font-size: 0.9em;
+    }
+    .calendar-grid-custom {
+        gap: 3px;
+    }
+    .calendar-grid-custom .day-name {
+        font-size: 0.7em;
+    }
+    .calendar-grid-custom .calendar-day {
+        font-size: 0.8em;
+        padding: 5px 2px;
+    }
+    .event-sidebar-custom h2 {
+        font-size: 1.2em;
+    }
+    .event-sidebar-custom .event-list-item {
+        padding: 10px;
+        font-size: 0.9em;
+    }
+    .custom-navbar {
+        padding: 10px 15px;
+    }
+    .custom-navbar .navbar-nav {
+        gap: 15px;
+    }
+    .custom-navbar .nav-link {
+        font-size: 0.9em;
+        padding: 5px 8px;
+    }
+}
+
+/* Futuristic Pagination for events.html */
+.events-page-container .pagination {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.4);
+    border-radius: 8px; /* Consistent with other elements */
+    overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px; /* Space between pagination items */
+    justify-content: center;
+    background-color: var(--secondary-bg); /* Enclose pagination in a darker bar */
+    padding: 10px;
+}
+
+.events-page-container .pagination .page-item {
+    margin: 0;
+}
+
+.events-page-container .pagination .page-link {
+    font-family: 'Arima', cursive;
+    padding: 10px 15px;
+    border: 1px solid var(--border-color); /* Futuristic border */
+    background-color: var(--primary-bg); /* Dark background for links */
+    color: var(--text-color);
+    border-radius: 8px; /* Rounded corners for each link */
+    transition: all 0.3s ease, box-shadow 0.3s ease, transform 0.2s ease;
+    text-decoration: none;
+    line-height: 1.5;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    z-index: 1;
+}
+
+.events-page-container .pagination .page-link:hover {
+    color: var(--highlight-color);
+    background-color: var(--accent-color); /* Lighter background on hover */
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 12px var(--glow-color);
+    transform: translateY(-2px); /* Slight lift */
+    z-index: 2;
+}
+
+.events-page-container .pagination .page-item.active .page-link,
+.events-page-container .pagination .page-item.active .page-link:focus,
+.events-page-container .pagination .page-item.active .page-link:hover {
+    color: #ffffff; /* White text for active */
+    background-color: var(--highlight-color); /* Highlight color for active background */
+    border-color: var(--highlight-color);
+    box-shadow: 0 0 15px var(--glow-color);
+    font-weight: bold;
+    transform: scale(1.05); /* Pop out more */
+    z-index: 3;
+}
+
+.events-page-container .pagination .page-item.disabled .page-link {
+    color: rgba(224, 224, 224, 0.5); /* Faded text for disabled */
+    background-color: rgba(26, 26, 46, 0.7); /* Slightly transparent primary-bg */
+    border-color: rgba(12, 117, 176, 0.3);
+    cursor: not-allowed;
+    box-shadow: none;
+    transform: none;
+}
+
+/* 404.html specific styles */
+.error-container h1.display-1 {
+    font-family: 'Arima', cursive;
+    color: var(--highlight-color);
+    text-shadow: 0 0 20px var(--glow-color);
+    font-size: 6em; /* Larger 404 */
+}
+.error-container h2 {
+    font-family: 'Arima', cursive;
+    color: var(--text-color);
+    font-size: 2.5em;
+    text-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+.error-container p.lead {
+    font-family: 'Arima', cursive;
+    color: var(--text-color);
+    opacity: 0.8;
+}
+
+/* Apply nav-button-custom style to the 'Go to Homepage' button */
+.error-container .nav-button-custom {
+    background-color: var(--accent-color);
+    color: var(--text-color);
+    border: none;
+    border-radius: 8px;
+    padding: 12px 25px;
+    font-size: 1.1em;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    text-decoration: none;
+    font-family: 'Arima', cursive;
+}
+.error-container .nav-button-custom:hover {
+    background-color: var(--highlight-color);
+    transform: translateY(-2px);
+    box-shadow: 0 0 15px var(--glow-color);
+}
+
+@media (max-width: 768px) {
+    .error-container h1.display-1 {
+        font-size: 4em;
+    }
+    .error-container h2 {
+        font-size: 1.8em;
+    }
+    .error-container .nav-button-custom {
+        font-size: 1em;
+        padding: 10px 20px;
+    }
+}
